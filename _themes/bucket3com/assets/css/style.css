@@ -185,3 +185,16 @@ dd {
 	border-bottom: 1px #ddd solid;
 }
 
+pre {
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -o-pre-wrap;
+	background: #eee;
+	border: 1px solid #ddd;
+	padding: 1ex;
+}
+#content #pre-stylish code {
+	font-family: monospace; 
+	display: block;
+}
+
