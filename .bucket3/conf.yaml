@@ -1,9 +1,12 @@
 # Make sure you cahnge the values bellow to match your configuration
 #
 
-root_dir: .
-html_dir: ./html
+root_dir: /Users/vrypan/Devel/www.bucket3.com
+html_dir: /Users/vrypan/Devel/www.bucket3.com/html
 
+# The data under "blog:" will be available in all templates.
+# For example, in order to print the blog title in a template you can use {{ blog.title }}
+# You can obviously define your own vars here.
 blog:
         title: The Bucket3 Blog
         url: http://www.bucket3.com/ 
@@ -18,4 +21,4 @@ blog:
 theme: bucket3com
 use_slugs: True 
 tags_lowercase: True 
-
+default_file_ext: md # Used by "bucket3 newpost" to determine the file type it should create
