@@ -1,4 +1,5 @@
 *.py[co]
+.DS_Store
 
 # Packages
 *.egg
@@ -28,3 +29,5 @@ pip-log.txt
 
 _data/
 html/
+.bucket3/data/
+.bucket3/fsdb/

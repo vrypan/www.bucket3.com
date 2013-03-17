@@ -1,24 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div id="home">
-	<h1>{{ _months[month] }} <a href="{{ blog.url}}{{year}}/">{{ year }}</a> <a href="{{ blog.url}}archive/">archive</a> | {{ index|length() }} posts</h1>
-{% for subindex in index|groupby('_date.month')|reverse() %}
-<div class="entry">
-	{% if not month %}<h2 class="entry-title"><a href="{{blog.url}}{{ year }}/{{ subindex.grouper }}">{{ _months[subindex.grouper] }}</a> ( {{subindex.list|length()}} )</h2>{% endif %}
-	<ul class="archive">
-{% for p in subindex.list %}
-<li><span class="date">{{ p._date.strftime("%d-%m-%Y")  }}</span> 
-		<a href="{{p._url}}">{% if p.title %}{{ p.title }}{% else %}#{% endif %}</a>
-	{% if p.tags %}
-	<small> [tags: {% for t in p.tags %}<a href="{{ blog.url }}tag/{{ t }}/">{{ t }}</a> {% endfor %}]</small>
-	{% endif %}
-	</li>
-{% endfor %}
-</ul>
 
-</div>
-{% endfor %}
-</div>
+{% for year, year_items in index|groupby('year')|reverse() %}
 
+	<h3>{{ year }} <small>| {{ year_items|length() }} posts
+		{% if tag %}tagged "{{ tag }}"{% endif %}
+		</small>
+	</h3>
+	{% for month in year_items|groupby('month')|reverse() %}
+			<h3>
+				<a href="{{blog.url}}{{ year }}/{{ month.grouper }}">{{ _months[month.grouper] }}</a> 
+				<a href="{{blog.url}}{{ year }}/">{{ year }}</a> 
+				<small>| {{month.list|length()}} posts </small>
+			</h3>
+		{% for p in month.list %}
+			<div class="row-fluid">
+				<div class="span1 muted">{{ p.meta.date.strftime("%d")  }}
+				</div>
+				<div class="span11">
+					<a href="{{p.meta.url}}">{% if p.title %}{{ p.title }}{% else %}#{% endif %}</a>
+					{% if p.meta.tags %}
+						{% for t in p.meta.tags %}
+							<a class="muted" href="{{ blog.url }}tag/{{ t }}/">#{{ t }}</a> 
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+		{% endfor %}
+	{% endfor %}
+	<hr />
+
+{% endfor %}
 {% endblock %}

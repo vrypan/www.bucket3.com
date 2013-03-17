@@ -15,20 +15,18 @@
 {% endblock page_meta %}
 
 {% block content %}
-<div id="home">
-	<h1>blog achive</h1>
-{% for y in counts|reverse() %}
-	<dl class="archive_short">
-		<dt>{{ y }}</dt>
-		{% for m in range(1,13) %}
-		<dd>
-			{% if counts[y][m] > 0 %}<a href="{{ blog.url }}{{ y }}/{{ m }}/">{{ _months_short[m] }}</a>
-			{% else %} {{ _months_short[m] }}
+	{% for y, months in counts|groupby('year')|reverse() %}
+		<h2>
+			<a href="{{blog.url}}{{ y }}/">{{ y }}</a> 
+			<small>| {{ months|sum(attribute="count") }} posts </small>
+		</h2>
+		{% for c in months %}
+			{% if c.count %}
+				<h3>
+					<a href="{{ blog.url }}{{ y }}/{{ c.month }}/">{{ _months_short[c.month] }}</a> <small>| {{ c.count }} posts</small>
+				</h3>
 			{% endif %}
-		</dd>
 		{% endfor %}
-	</dl>
-{% endfor %}
-</div>
-
+	{% endfor %}
+	<hr />
 {% endblock %}

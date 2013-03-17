@@ -1,8 +1,3 @@
-# Make sure you cahnge the values bellow to match your configuration
-#
-
-root_dir: /Users/vrypan/Devel/www.bucket3.com
-html_dir: /Users/vrypan/Devel/www.bucket3.com/html
 
 # The data under "blog:" will be available in all templates.
 # For example, in order to print the blog title in a template you can use {{ blog.title }}
@@ -13,9 +8,6 @@ blog:
         description: bucket3 is a simple, blog aware, static site generator written in python.
         author: "Panayotis Vryonis <vrypan@gmail.com>"
         copyright:  Creative Commons Attribution 3.0 License (CC-BY 3.0)
-        google_site_verification: 
-        google_analytics_id: UA-67888-8
-        plusone_button: False
         disqus_shortname: bucket3blog
 
 theme: bucket3com

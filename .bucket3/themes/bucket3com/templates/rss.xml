@@ -10,18 +10,16 @@
 		<lastBuildDate>{{ _now.strftime("%a, %d %b %Y %H:%M:%S %z")  }}</lastBuildDate>
 		<docs>http://cyber.law.harvard.edu/rss/rss.html</docs>
 		<generator>bucket3</generator>
-		 <!-- PubSubHubbub Discovery -->
 		<link rel="hub"  href="http://vrypan.superfeedr.com/" xmlns="http://www.w3.org/2005/Atom" />
 		<link rel="self" href="http://www.bucket3.com/rss.xml" xmlns="http://www.w3.org/2005/Atom" />
-		<!-- End Of PubSubHubbub Discovery -->
 		<ttl>15</ttl>
 		{% for p in posts %}
 		<item>
 			<title>{{ p.title|e }}</title>
-			<link>{{ p._url }}</link>
-			<guid>{{ p._url }}</guid>
-			<description>{{ p.body|e }}</description>
-			<pubDate>{{ p._date.strftime("%a, %d %b %Y %H:%M:%S %z") }}</pubDate>
+			<link>{{ p.meta.url }}</link>
+			<guid>{{ p.meta.url }}</guid>
+			<description>{{ p.html|e }}</description>
+			<pubDate>{{ p.meta.date.strftime("%a, %d %b %Y %H:%M:%S %z") }}</pubDate>
 		</item>
 		{% endfor %}
 	</channel>
